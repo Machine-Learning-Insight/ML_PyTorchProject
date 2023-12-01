@@ -34,15 +34,18 @@ if __name__ == '__main__':
             # zero the parameter gradients
             optimizer.zero_grad()
 
-            # forward + backward + optimize
+            # obtains prediction
             predictions = net.forward(inputs)
-            loss = criterion(predictions, labels)
-            loss.backward()
-            optimizer.step()
 
+            # calculates loss and gradients
+            loss = criterion(predictions, labels)
+
+            # updates parameters
+            optimizer.step()
         print(f'- epoch #{epoch+1} completed! Loss: {loss.item()}')
 
     print(f'Finished Training {model_name}')
+
     PATH = f'./models/{model_name}.pth'
     torch.save(net.state_dict(), PATH)
     print(f'{model_name} was saved at {PATH}')
