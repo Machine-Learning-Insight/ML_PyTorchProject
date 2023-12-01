@@ -7,6 +7,8 @@ import torch.optim as optim
 import helper_CIFAR10
 import neuralNetwork_CIFAR10 as nn_CIFAR10
 
+import time
+
 
 if __name__ == '__main__':
     # user input
@@ -25,6 +27,7 @@ if __name__ == '__main__':
 
     # training the neural network
     print(f'Training {model_name} with {epoch_number} epochs...')
+    last = time.time()
 
     for epoch in range(epoch_number):  # loop over the dataset multiple times
         for i, data in enumerate(train_loader):
@@ -35,17 +38,18 @@ if __name__ == '__main__':
             optimizer.zero_grad()
 
             # obtains prediction
-            predictions = net.forward(inputs)
+            predictions = net(inputs)
 
             # calculates loss and gradients
             loss = criterion(predictions, labels)
+            loss.backward()
 
-            # updates parameters
+            # updates weights
             optimizer.step()
-        print(f'- epoch #{epoch+1} completed! Loss: {loss.item()}')
+        print(f'- epoch #{epoch+1} completed!\tLoss: {loss.item():.2f}\tTime: {(time.time()-last):.2f}')
+        last = time.time()
 
     print(f'Finished Training {model_name}')
-
     PATH = f'./models/{model_name}.pth'
     torch.save(net.state_dict(), PATH)
     print(f'{model_name} was saved at {PATH}')
