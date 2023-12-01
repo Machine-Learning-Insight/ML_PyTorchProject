@@ -5,12 +5,14 @@ import numpy as np
 
 import helper_CIFAR10
 import neuralNetwork_CIFAR10 as nn_CIFAR10
+import ssl
 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 if __name__ == '__main__':
     # initializes a neural network
     net = nn_CIFAR10.NeuralNetwork_CIFAR()
-    PATH = 'cifar_net.pth'
+    PATH = 'CIFAR_Classifier/cifar_net.pth'
     net.load_state_dict(torch.load(PATH))
     print(f'Predicting with {PATH}')
 
