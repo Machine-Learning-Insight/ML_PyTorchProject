@@ -6,12 +6,17 @@ import numpy as np
 from torch import nn
 
 import helper_CIFAR10
+<<<<<<< HEAD
 import helper_GUN_OBJECT
 
 import SimpleNN
 # import ssl
+=======
+import SimpleNN as nn_CIFAR10
+import ssl
+>>>>>>> 4da08120395bf1ac97d05fd9573c26606a86eab6
 
-# TODO: ssl._create_default_https_context = ssl._create_unverified_context
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def test_model(nn_model: nn.Module, testing_loader, classes_number):
