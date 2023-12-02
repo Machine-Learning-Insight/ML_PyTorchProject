@@ -109,6 +109,12 @@ def process_video(video_path, output_path, model, frame_rate=5):
 # Load a pretrained YOLOv8 model
 model = YOLO('yolov8n.pt')
 
+
+#Non-Gun video path
+# video_path = 'Objects_Detection/sample-video.mp4'
+
+#Gun video path
 video_path = 'Objects_Detection/gun-video.mp4'
+
 output_path = 'objects_frames'
 process_video(video_path, output_path, model)
