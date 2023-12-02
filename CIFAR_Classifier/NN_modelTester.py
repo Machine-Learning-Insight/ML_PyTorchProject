@@ -7,9 +7,9 @@ from torch import nn
 
 import helper_CIFAR10
 import SimpleNN as nn_CIFAR10
-# import ssl
+import ssl
 
-# TODO: ssl._create_default_https_context = ssl._create_unverified_context
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def test_model(nn_model: nn.Module, testing_loader, classes_number):
