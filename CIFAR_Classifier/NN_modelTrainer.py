@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import helper_CIFAR10
+import helper_GUN_OBJECT
 import SimpleNN as nn_CIFAR10
 import time
 from pathlib import Path
@@ -54,13 +55,15 @@ def main():
     print('NN_modelTrainer.py\n')
     dataset_choice = int(input('Select a data set\n' +
                                '1. CIFAR10\n' +
-                               '2. _______\n' +
+                               '2. GUN-OBJECT\n' +
                                '3. _______\n' +
                                'Introduce data set number: '))
 
     # obtains loaders for training and testing the model
     if dataset_choice == 1:
         training_loader, _ = helper_CIFAR10.get_train_and_test_loader(batch_size=4)
+    elif dataset_choice == 2:
+        training_loader = helper_GUN_OBJECT.get_train(batch_size=4)
     else:
         raise Exception('Not Supported')
 
@@ -75,7 +78,9 @@ def main():
     train_model(nn_model, training_loader, epoch_number)
 
     # saves model
-    os.mkdir('models')
+    if not os.path.exists("models"):
+        os.mkdir('models')
+
     relative_path = f'./models/{model_name}.pth'
     torch.save(nn_model.state_dict(), relative_path)
     print(f'{model_name} was saved at {Path(relative_path).resolve()}')

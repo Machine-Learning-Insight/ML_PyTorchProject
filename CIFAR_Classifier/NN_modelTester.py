@@ -6,6 +6,8 @@ import numpy as np
 from torch import nn
 
 import helper_CIFAR10
+import helper_GUN_OBJECT
+
 import SimpleNN as nn_CIFAR10
 # import ssl
 
@@ -42,7 +44,7 @@ def main():
     print('NN_modelTester.py\n')
     dataset_choice = int(input('Select a data set\n' +
                                '1. CIFAR10\n' +
-                               '2. _______\n' +
+                               '2. GUN-OBJECT\n' +
                                '3. _______\n' +
                                'Introduce data set number: '))
 
@@ -50,6 +52,9 @@ def main():
     if dataset_choice == 1:
         _, testing_loader = helper_CIFAR10.get_train_and_test_loader(batch_size=1)
         classes_number = 10
+    elif dataset_choice == 2:
+        testing_loader = helper_GUN_OBJECT.get_train(batch_size=1)
+        classes_number = 4
     else:
         raise Exception('Not Supported')
 
