@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as f
 
 
-class NeuralNetwork_CIFAR(nn.Module):
+class SimpleNN(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv1 = nn.Conv2d(3, 6, 5)
