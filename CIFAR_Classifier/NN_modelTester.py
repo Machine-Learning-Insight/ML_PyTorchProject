@@ -8,7 +8,7 @@ from torch import nn
 import helper_CIFAR10
 import helper_GUN_OBJECT
 
-import SimpleNN as nn_CIFAR10
+import SimpleNN
 # import ssl
 
 # TODO: ssl._create_default_https_context = ssl._create_unverified_context
@@ -61,7 +61,7 @@ def main():
     path = input('Introduce model PATH: ')
 
     # creates model and loads data
-    nn_model = nn_CIFAR10.SimpleNN()
+    nn_model = SimpleNN.SimpleNN()
     nn_model.load_state_dict(torch.load(path))
 
     # test the model

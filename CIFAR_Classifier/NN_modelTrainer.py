@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import helper_CIFAR10
 import helper_GUN_OBJECT
-import SimpleNN as nn_CIFAR10
+import SimpleNN
 import time
 from pathlib import Path
 import os
@@ -71,7 +71,7 @@ def main():
     epoch_number = int(input('Introduce numbers of epoch: '))
 
     # creates model and trains it
-    nn_model = nn_CIFAR10.SimpleNN()
+    nn_model = SimpleNN.SimpleNN()
     if device_cuda:
         nn_model.to(device_cuda)
 
