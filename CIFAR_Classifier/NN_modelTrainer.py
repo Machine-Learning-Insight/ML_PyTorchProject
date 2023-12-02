@@ -6,6 +6,7 @@ import helper_CIFAR10
 import SimpleNN as nn_CIFAR10
 import time
 from pathlib import Path
+import os
 
 
 device_cuda = torch.device('cuda:0') if (torch.cuda.is_available()) else None
@@ -74,6 +75,7 @@ def main():
     train_model(nn_model, training_loader, epoch_number)
 
     # saves model
+    os.mkdir('models')
     relative_path = f'./models/{model_name}.pth'
     torch.save(nn_model.state_dict(), relative_path)
     print(f'{model_name} was saved at {Path(relative_path).resolve()}')
